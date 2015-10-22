@@ -1,2 +1,2 @@
-# Github-Android
-Android App for knowing more about a Github user
+# Github-Summary
+App for knowing more about a Github user(Complete with Android App)
