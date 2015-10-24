@@ -33,13 +33,6 @@ if (Meteor.isServer) {
 
 
 if (Meteor.isClient) {
-  function sortResults(data, prop, asc) {
-    data = data.sort(function(a, b) {
-      if (asc) return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
-      else return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
-    });
-    return data;
-  }
   Template.body.helpers({
     rateError: function () {
       var limit = Template.instance().limit.get();
@@ -64,22 +57,31 @@ if (Meteor.isClient) {
       $("#username").val("");
     },
     "submit #get-username": function (event) {
+      $("#avatar").hide();
+      $("#summary").text("Loading...")
       event.preventDefault();
       var username = event.target.username.value;
-      var urls = ["https://api.github.com/users/"+username,"https://api.github.com/users/"+username+"/repos?type=owner&sort=pushed&per_page=100","https://api.github.com/users/" + username + "/events?per_page=100&page=1"];
+      var urls = ["https://api.github.com/users/"+username,"https://api.github.com/users/"+username+"/repos?type=owner&sort=pushed&per_page=100","https://api.github.com/users/" + username + "/events?per_page=100&page=1","https://api.github.com/rate_limit"];
       Meteor.call("getDetails",urls,username, function(error, results) {
         if(error){
-          $("#summary").text("Username entered by you does not exist!");
+          $("#avatar").hide();
+          $("#summary").text("Internet connection problem");
         }
         else if(results[0].data.message == "Not Found"){
+          $("#avatar").hide();
           var error = "Username not found. Please check the username typed!";
+          $("#summary").html(error);
+        }
+        else if(results[3].data.rate.remaining < 4){
+          $("#avatar").hide();
+          var error = "Rate limit crossed! Please try after sometime!";
           $("#summary").html(error);
         }
         else{
           var summary = "";
           var lang = {};
           var eventsType = {};
-          var name = results[0].data.name;
+          var name = (results[0].data.name == null)? username : results[0].data.name;
           var url = results[0].data.html_url;
           var numberOfRepos = results[0].data.public_repos;
           var numberOfFollowers = results[0].data.followers;
