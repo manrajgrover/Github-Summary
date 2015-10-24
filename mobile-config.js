@@ -6,3 +6,4 @@ App.info({
   email: 'manrajsinghgrover@gmail.com',
   website: 'https://github.com/ManrajGrover'
 });
+App.accessRule("*");
