@@ -4,7 +4,7 @@
 </head>
  
 <body>
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
       <h1><img id="github" src="/default.png"/> Github Summary</h1>
@@ -21,18 +21,17 @@
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
         <form id="get-username">
-          <input type="text" name="username" placeholder="Enter GitHub Username"/>
+          <input type="text" id="username" name="username" placeholder="Enter GitHub Username"/>
           </form>
         </div>
       </div>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-          <img id="avatar" src="/default.png"/>
+          <img id="avatar" src="/default.png" />
         </div>
       </div>
       <div class="row">
-        <div id="summary" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" id="summary">
         </div>
       </div>
     {{/if}}
