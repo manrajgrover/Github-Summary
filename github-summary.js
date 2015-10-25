@@ -48,6 +48,8 @@ if (Meteor.isClient) {
       }
       else{
         var limit = results.data.rate.remaining;
+        console.log(results.data.rate.reset);
+        console.log(results.data.rate.remaining);
         self.limit.set(limit);
       }
     });
@@ -130,10 +132,10 @@ if (Meteor.isClient) {
           summary += '<a href="'+url+'" target="_blank">' + name + '</a> joined Github on ' + createdAccount + ' and last updated at ' + lastActivity+ '. ';
           summary += 'He/She has ' + numberOfRepos + ' <a href="'+url+'?tab=repositories" target="_blank">public repositories</a> and '+ numberOfFollowers + ' <a href="'+url+'/followers" target="_blank">followers</a>. ';
           var rand = (Math.round(Math.random()*100))%adjectives.length;
-          if(popular != null){
+          if(popular != null && languages[popular] != null){
             summary += 'He/She is ' + adjectives[rand] + " " + languages[popular] + '. ';
           }
-          if(eventsPopular != null){
+          if(eventsPopular != null && events_action[eventsPopular] != null && events_type[eventsPopular] != null){
             summary += 'He/She likes ' + events_action[eventsPopular] + ' and ' + events_type[eventsPopular] + '. ';
           }
           if(location != null && company != null){
