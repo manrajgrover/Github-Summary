@@ -151,13 +151,13 @@ if (Meteor.isClient) {
             summary += 'You can find his/her blog <a href="'+blog+'" target="_blank">here</a>. ';  
           }
           if(email != null){
-            summary += 'You can email him at <a href="mailto:'+email+'" target="_blank">'+email+'</a>.';  
+            summary += 'You can email him/her at <a href="mailto:'+email+'" target="_blank">'+email+'</a>.';  
           }
           $("#avatar").show();
           $("#avatar").attr("src",results[0].data.avatar_url);
           $("#summary").html(summary);
         }
       });
-}
-});
+    }
+  });
 }
