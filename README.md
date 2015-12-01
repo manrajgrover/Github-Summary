@@ -1,7 +1,7 @@
 # Github Summary
 Web and Android App for knowing more about a Github user
 
-Check it out: http://githubsummary.meteor.com/
+![Demo](https://github.com/ManrajGrover/Github-Summary/blob/master/assets/Screenshot.png)
 
 # License & Credits
 
